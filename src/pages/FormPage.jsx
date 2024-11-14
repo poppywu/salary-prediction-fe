@@ -20,10 +20,12 @@ function FormPage() {
   const [skills, setSkills] = useState({});
   const { step, setStep } = useStepContext();
   const { formInput, setFormInput } = useFormContext();
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       const response = await axios.post(URL, formInput, {
         headers: {
           'Content-Type': 'application/json',
@@ -31,6 +33,7 @@ function FormPage() {
       setFormSubmitted(true);
       setPredictedSalary(response.data.predictedSalary);
       setSkills(response.data.extractedSkills);
+      setLoading(false);
     } catch (error) {
       console.log("error while submitting");
       console.error(error);
@@ -96,6 +99,7 @@ function FormPage() {
             {stepComponents[step].description}
           </p>
           <form id="main-form">{stepComponents[step].component}</form>
+          {loading && <p>Please wait, we are busy predicting your salary...</p>}
           <BottomToolbar
             formSubmitted={formSubmitted}
             handleSubmit={handleSubmit}
