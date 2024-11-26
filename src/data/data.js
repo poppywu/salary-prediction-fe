@@ -13355,4 +13355,4 @@ export const INDUSTRY_SUGGESTION = [
   "Wind Electric Power Generation",
 ];
 
-export const URL = "https://salary-prediciton-be-743555531212.us-central1.run.app/api/predict-salary";
+export const URL = "https://salary-prediciton-be-469630604605.us-central1.run.app/api/predict-salary";
